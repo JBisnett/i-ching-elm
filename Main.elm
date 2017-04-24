@@ -7,7 +7,7 @@
 module Main exposing (..)
 
 import Html exposing (..)
-import Hexagram exposing (Hexagram, hexagramList)
+import Hexagram exposing (Hexagram, hexagramList, parsedHexagrams)
 import Html.Attributes exposing (href, class, style)
 import Markdown
 import Material
@@ -18,6 +18,7 @@ import Material.Button as Button
 import Material.Options as Options exposing (css)
 import Material.Layout as Layout
 
+import HtmlParser as Parser
 
 
 -- MODEL
@@ -26,6 +27,7 @@ import Material.Layout as Layout
 type alias Model =
     { initialHexagram : Maybe Hexagram
     , movingHexagram : Maybe Hexagram
+    , parsedHexagrams : List Parser.Node 
     , mdl : Material.Model
     }
 
@@ -34,6 +36,7 @@ model : Model
 model =
     { initialHexagram = Nothing
     , movingHexagram = Nothing
+    , parsedHexagrams = parsedHexagrams
     , mdl = Material.model
     }
 
