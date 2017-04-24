@@ -10486,38 +10486,133 @@ var _debois$elm_mdl$Material_Color$primaryDark = _debois$elm_mdl$Material_Color$
 var _debois$elm_mdl$Material_Color$primaryContrast = _debois$elm_mdl$Material_Color$C('primary-contrast');
 var _debois$elm_mdl$Material_Color$accent = _debois$elm_mdl$Material_Color$C('accent');
 var _debois$elm_mdl$Material_Color$accentContrast = _debois$elm_mdl$Material_Color$C('accent-contrast');
-var _debois$elm_mdl$Hexagram$renderReading = F2(
-	function (sgram, mgram) {
-		return A2(
-			_debois$elm_mdl$Material_Grid$grid,
-			{ctor: '[]'},
-			{
+var _debois$elm_mdl$Hexagram$toHtml = function (hex) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$h1,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(hex.character),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
 				ctor: '::',
 				_0: A2(
-					_debois$elm_mdl$Material_Grid$cell,
+					_elm_lang$html$Html$h2,
+					{ctor: '[]'},
 					{
 						ctor: '::',
-						_0: A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 10),
-						_1: {
+						_0: _elm_lang$html$Html$text(hex.directName),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$h3,
+						{ctor: '[]'},
+						{
 							ctor: '::',
-							_0: _debois$elm_mdl$Material_Color$background(_debois$elm_mdl$Material_Color$primary),
-							_1: {
-								ctor: '::',
-								_0: _debois$elm_mdl$Material_Options$center,
-								_1: {ctor: '[]'}
-							}
-						}
-					},
-					{
+							_0: _elm_lang$html$Html$text(hex.name),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
 						ctor: '::',
 						_0: A2(
 							_elm_lang$html$Html$h4,
 							{ctor: '[]'},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text('Initial Hexagram'),
+								_0: _elm_lang$html$Html$text('Judgement'),
 								_1: {ctor: '[]'}
 							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$p,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(hex.judgement),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$h4,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('Image'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$p,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text(hex.image),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$h4,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Lines'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+};
+var _debois$elm_mdl$Hexagram$renderReading = F2(
+	function (sgram, mgram) {
+		return A2(
+			_debois$elm_mdl$Material_Grid$grid,
+			{
+				ctor: '::',
+				_0: _debois$elm_mdl$Material_Options$center,
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_debois$elm_mdl$Material_Grid$cell,
+					{
+						ctor: '::',
+						_0: A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 5),
+						_1: {
+							ctor: '::',
+							_0: _debois$elm_mdl$Material_Color$background(_debois$elm_mdl$Material_Color$primary),
+							_1: {
+								ctor: '::',
+								_0: _debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$primaryContrast),
+								_1: {
+									ctor: '::',
+									_0: _debois$elm_mdl$Material_Options$center,
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					},
+					{
+						ctor: '::',
+						_0: _debois$elm_mdl$Hexagram$toHtml(sgram),
 						_1: {ctor: '[]'}
 					}),
 				_1: {
@@ -10526,45 +10621,24 @@ var _debois$elm_mdl$Hexagram$renderReading = F2(
 						_debois$elm_mdl$Material_Grid$cell,
 						{
 							ctor: '::',
-							_0: A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 4),
+							_0: A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 5),
 							_1: {
 								ctor: '::',
-								_0: _debois$elm_mdl$Material_Color$background(_debois$elm_mdl$Material_Color$accent),
+								_0: _debois$elm_mdl$Material_Color$background(_debois$elm_mdl$Material_Color$primaryDark),
 								_1: {
 									ctor: '::',
-									_0: _debois$elm_mdl$Material_Options$center,
-									_1: {ctor: '[]'}
+									_0: _debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$primaryContrast),
+									_1: {
+										ctor: '::',
+										_0: _debois$elm_mdl$Material_Options$center,
+										_1: {ctor: '[]'}
+									}
 								}
 							}
 						},
 						{
 							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$div,
-								{ctor: '[]'},
-								{
-									ctor: '::',
-									_0: A2(
-										_elm_lang$html$Html$h4,
-										{ctor: '[]'},
-										{
-											ctor: '::',
-											_0: _elm_lang$html$Html$text('Resultant Hexagram'),
-											_1: {ctor: '[]'}
-										}),
-									_1: {
-										ctor: '::',
-										_0: A2(
-											_elm_lang$html$Html$p,
-											{ctor: '[]'},
-											{
-												ctor: '::',
-												_0: _elm_lang$html$Html$text('Offset by 2'),
-												_1: {ctor: '[]'}
-											}),
-										_1: {ctor: '[]'}
-									}
-								}),
+							_0: _debois$elm_mdl$Hexagram$toHtml(mgram),
 							_1: {ctor: '[]'}
 						}),
 					_1: {ctor: '[]'}
@@ -10575,13 +10649,35 @@ var _debois$elm_mdl$Hexagram$hexagramList = {
 	ctor: '::',
 	_0: {
 		number: 1,
-		name: 'Test',
-		character: '',
-		meaning: '',
+		name: 'The Creative',
+		directName: 'Ch\'ien',
+		character: '䷀',
+		judgement: 'The Creative works sublime success, Furthering through perseverance.',
+		image: 'The movement of heaven is full of power. Thus the superior man makes himself strong and untiring.',
 		lines: {
 			ctor: '::',
-			_0: '',
-			_1: {ctor: '[]'}
+			_0: 'Nine at the beginning means: Hidden dragon. Do not act.',
+			_1: {
+				ctor: '::',
+				_0: 'Nine in the second place means: Dragon appearing in the field. It furthers one to see the great man.',
+				_1: {
+					ctor: '::',
+					_0: 'Nine in the third place means: All day long the superior man is creatively active. At nightfall his mind is still beset with cares. Danger. No blame.',
+					_1: {
+						ctor: '::',
+						_0: 'Nine in the fourth place means: Wavering flight over the depths. No blame.',
+						_1: {
+							ctor: '::',
+							_0: 'Nine in the fifth place means: Flying dragon in the heavens. It furthers one to see the great man.',
+							_1: {
+								ctor: '::',
+								_0: 'Nine at the top means: Arrogant dragon will have cause to repent.',
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			}
 		},
 		repr: {
 			ctor: '::',
@@ -10608,14 +10704,75 @@ var _debois$elm_mdl$Hexagram$hexagramList = {
 				}
 			}
 		},
-		image: '',
-		sequence: ''
+		picture: ''
 	},
-	_1: {ctor: '[]'}
+	_1: {
+		ctor: '::',
+		_0: {
+			number: 2,
+			name: 'The Receptive',
+			directName: 'K\'un',
+			character: '䷁',
+			judgement: 'The Creative works sublime success, Furthering through perseverance.',
+			image: 'The movement of heaven is full of power. Thus the superior man makes himself strong and untiring.',
+			lines: {
+				ctor: '::',
+				_0: 'Nine at the beginning means: Hidden dragon. Do not act.',
+				_1: {
+					ctor: '::',
+					_0: 'Nine in the second place means: Dragon appearing in the field. It furthers one to see the great man.',
+					_1: {
+						ctor: '::',
+						_0: 'Nine in the third place means: All day long the superior man is creatively active. At nightfall his mind is still beset with cares. Danger. No blame.',
+						_1: {
+							ctor: '::',
+							_0: 'Nine in the fourth place means: Wavering flight over the depths. No blame.',
+							_1: {
+								ctor: '::',
+								_0: 'Nine in the fifth place means: Flying dragon in the heavens. It furthers one to see the great man.',
+								_1: {
+									ctor: '::',
+									_0: 'Nine at the top means: Arrogant dragon will have cause to repent.',
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			},
+			repr: {
+				ctor: '::',
+				_0: false,
+				_1: {
+					ctor: '::',
+					_0: false,
+					_1: {
+						ctor: '::',
+						_0: false,
+						_1: {
+							ctor: '::',
+							_0: false,
+							_1: {
+								ctor: '::',
+								_0: false,
+								_1: {
+									ctor: '::',
+									_0: false,
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			},
+			picture: ''
+		},
+		_1: {ctor: '[]'}
+	}
 };
-var _debois$elm_mdl$Hexagram$Hexagram = F8(
-	function (a, b, c, d, e, f, g, h) {
-		return {number: a, name: b, character: c, meaning: d, lines: e, repr: f, image: g, sequence: h};
+var _debois$elm_mdl$Hexagram$Hexagram = F9(
+	function (a, b, c, d, e, f, g, h, i) {
+		return {number: a, name: b, directName: c, character: d, image: e, judgement: f, lines: g, repr: h, picture: i};
 	});
 var _evancz$elm_markdown$Native_Markdown = function() {
 
