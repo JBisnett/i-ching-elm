@@ -10486,9 +10486,73 @@ var _debois$elm_mdl$Material_Color$primaryDark = _debois$elm_mdl$Material_Color$
 var _debois$elm_mdl$Material_Color$primaryContrast = _debois$elm_mdl$Material_Color$C('primary-contrast');
 var _debois$elm_mdl$Material_Color$accent = _debois$elm_mdl$Material_Color$C('accent');
 var _debois$elm_mdl$Material_Color$accentContrast = _debois$elm_mdl$Material_Color$C('accent-contrast');
+var _debois$elm_mdl$Material_Elevation$transition = function (duration) {
+	return A2(
+		_debois$elm_mdl$Material_Options$css,
+		'transition',
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'box-shadow ',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(duration),
+				'ms ease-in-out 0s')));
+};
+var _debois$elm_mdl$Material_Elevation$e0 = _debois$elm_mdl$Material_Options$nop;
+var _debois$elm_mdl$Material_Elevation$shadow = function (z) {
+	return _debois$elm_mdl$Material_Options$cs(
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'mdl-shadow--',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(z),
+				'dp')));
+};
+var _debois$elm_mdl$Material_Elevation$e2 = _debois$elm_mdl$Material_Elevation$shadow(2);
+var _debois$elm_mdl$Material_Elevation$e3 = _debois$elm_mdl$Material_Elevation$shadow(3);
+var _debois$elm_mdl$Material_Elevation$e4 = _debois$elm_mdl$Material_Elevation$shadow(4);
+var _debois$elm_mdl$Material_Elevation$e6 = _debois$elm_mdl$Material_Elevation$shadow(6);
+var _debois$elm_mdl$Material_Elevation$e8 = _debois$elm_mdl$Material_Elevation$shadow(8);
+var _debois$elm_mdl$Material_Elevation$e16 = _debois$elm_mdl$Material_Elevation$shadow(16);
+var _debois$elm_mdl$Material_Elevation$e24 = _debois$elm_mdl$Material_Elevation$shadow(24);
+var _debois$elm_mdl$Material_Elevation$elevations = _elm_lang$core$Array$fromList(
+	{
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e0, _1: 0},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e2, _1: 2},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e3, _1: 3},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e4, _1: 4},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e6, _1: 6},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e8, _1: 8},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e16, _1: 16},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e24, _1: 24},
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
 var _debois$elm_mdl$Hexagram$toHtml = function (hex) {
 	return A2(
-		_elm_lang$html$Html$div,
+		_debois$elm_mdl$Material_Options$div,
 		{ctor: '[]'},
 		{
 			ctor: '::',
@@ -10570,7 +10634,23 @@ var _debois$elm_mdl$Hexagram$toHtml = function (hex) {
 												_0: _elm_lang$html$Html$text('Lines'),
 												_1: {ctor: '[]'}
 											}),
-										_1: {ctor: '[]'}
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$ol,
+												{ctor: '[]'},
+												A2(
+													_elm_lang$core$List$map,
+													function (_p0) {
+														return A2(
+															_elm_lang$html$Html$li,
+															{ctor: '[]'},
+															_elm_lang$core$List$singleton(
+																_elm_lang$html$Html$text(_p0)));
+													},
+													hex.lines)),
+											_1: {ctor: '[]'}
+										}
 									}
 								}
 							}
@@ -10582,6 +10662,15 @@ var _debois$elm_mdl$Hexagram$toHtml = function (hex) {
 };
 var _debois$elm_mdl$Hexagram$renderReading = F2(
 	function (sgram, mgram) {
+		var shared = {
+			ctor: '::',
+			_0: A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 5),
+			_1: {
+				ctor: '::',
+				_0: _debois$elm_mdl$Material_Elevation$e2,
+				_1: {ctor: '[]'}
+			}
+		};
 		return A2(
 			_debois$elm_mdl$Material_Grid$grid,
 			{
@@ -10593,10 +10682,10 @@ var _debois$elm_mdl$Hexagram$renderReading = F2(
 				ctor: '::',
 				_0: A2(
 					_debois$elm_mdl$Material_Grid$cell,
-					{
-						ctor: '::',
-						_0: A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 5),
-						_1: {
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						shared,
+						{
 							ctor: '::',
 							_0: _debois$elm_mdl$Material_Color$background(_debois$elm_mdl$Material_Color$primary),
 							_1: {
@@ -10608,21 +10697,31 @@ var _debois$elm_mdl$Hexagram$renderReading = F2(
 									_1: {ctor: '[]'}
 								}
 							}
-						}
-					},
+						}),
 					{
 						ctor: '::',
-						_0: _debois$elm_mdl$Hexagram$toHtml(sgram),
-						_1: {ctor: '[]'}
+						_0: A2(
+							_elm_lang$html$Html$h1,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('Initial'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: _debois$elm_mdl$Hexagram$toHtml(sgram),
+							_1: {ctor: '[]'}
+						}
 					}),
 				_1: {
 					ctor: '::',
 					_0: A2(
 						_debois$elm_mdl$Material_Grid$cell,
-						{
-							ctor: '::',
-							_0: A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 5),
-							_1: {
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							shared,
+							{
 								ctor: '::',
 								_0: _debois$elm_mdl$Material_Color$background(_debois$elm_mdl$Material_Color$primaryDark),
 								_1: {
@@ -10634,12 +10733,22 @@ var _debois$elm_mdl$Hexagram$renderReading = F2(
 										_1: {ctor: '[]'}
 									}
 								}
-							}
-						},
+							}),
 						{
 							ctor: '::',
-							_0: _debois$elm_mdl$Hexagram$toHtml(mgram),
-							_1: {ctor: '[]'}
+							_0: A2(
+								_elm_lang$html$Html$h1,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Moving'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: _debois$elm_mdl$Hexagram$toHtml(mgram),
+								_1: {ctor: '[]'}
+							}
 						}),
 					_1: {ctor: '[]'}
 				}
@@ -10656,22 +10765,22 @@ var _debois$elm_mdl$Hexagram$hexagramList = {
 		image: 'The movement of heaven is full of power. Thus the superior man makes himself strong and untiring.',
 		lines: {
 			ctor: '::',
-			_0: 'Nine at the beginning means: Hidden dragon. Do not act.',
+			_0: 'Hidden dragon. Do not act.',
 			_1: {
 				ctor: '::',
-				_0: 'Nine in the second place means: Dragon appearing in the field. It furthers one to see the great man.',
+				_0: 'Dragon appearing in the field. It furthers one to see the great man.',
 				_1: {
 					ctor: '::',
-					_0: 'Nine in the third place means: All day long the superior man is creatively active. At nightfall his mind is still beset with cares. Danger. No blame.',
+					_0: 'All day long the superior man is creatively active. At nightfall his mind is still beset with cares. Danger. No blame.',
 					_1: {
 						ctor: '::',
-						_0: 'Nine in the fourth place means: Wavering flight over the depths. No blame.',
+						_0: 'Wavering flight over the depths. No blame.',
 						_1: {
 							ctor: '::',
-							_0: 'Nine in the fifth place means: Flying dragon in the heavens. It furthers one to see the great man.',
+							_0: 'Flying dragon in the heavens. It furthers one to see the great man.',
 							_1: {
 								ctor: '::',
-								_0: 'Nine at the top means: Arrogant dragon will have cause to repent.',
+								_0: 'Arrogant dragon will have cause to repent.',
 								_1: {ctor: '[]'}
 							}
 						}
@@ -10717,22 +10826,22 @@ var _debois$elm_mdl$Hexagram$hexagramList = {
 			image: 'The movement of heaven is full of power. Thus the superior man makes himself strong and untiring.',
 			lines: {
 				ctor: '::',
-				_0: 'Nine at the beginning means: Hidden dragon. Do not act.',
+				_0: 'Hidden dragon. Do not act.',
 				_1: {
 					ctor: '::',
-					_0: 'Nine in the second place means: Dragon appearing in the field. It furthers one to see the great man.',
+					_0: 'Dragon appearing in the field. It furthers one to see the great man.',
 					_1: {
 						ctor: '::',
-						_0: 'Nine in the third place means: All day long the superior man is creatively active. At nightfall his mind is still beset with cares. Danger. No blame.',
+						_0: 'All day long the superior man is creatively active. At nightfall his mind is still beset with cares. Danger. No blame.',
 						_1: {
 							ctor: '::',
-							_0: 'Nine in the fourth place means: Wavering flight over the depths. No blame.',
+							_0: 'Wavering flight over the depths. No blame.',
 							_1: {
 								ctor: '::',
-								_0: 'Nine in the fifth place means: Flying dragon in the heavens. It furthers one to see the great man.',
+								_0: 'Flying dragon in the heavens. It furthers one to see the great man.',
 								_1: {
 									ctor: '::',
-									_0: 'Nine at the top means: Arrogant dragon will have cause to repent.',
+									_0: 'Arrogant dragon will have cause to repent.',
 									_1: {ctor: '[]'}
 								}
 							}
@@ -15996,10 +16105,10 @@ var _debois$elm_mdl$Material_Scheme$topWithScheme = F3(
 var _debois$elm_mdl$Material_Scheme$top = function (content) {
 	return A3(_debois$elm_mdl$Material_Scheme$topWithScheme, _debois$elm_mdl$Material_Color$Grey, _debois$elm_mdl$Material_Color$Grey, content);
 };
-var _debois$elm_mdl$Main$model = {count: 0, mdl: _debois$elm_mdl$Material$model};
-var _debois$elm_mdl$Main$Model = F2(
-	function (a, b) {
-		return {count: a, mdl: b};
+var _debois$elm_mdl$Main$model = {initialHexagram: _elm_lang$core$Maybe$Nothing, movingHexagram: _elm_lang$core$Maybe$Nothing, mdl: _debois$elm_mdl$Material$model};
+var _debois$elm_mdl$Main$Model = F3(
+	function (a, b, c) {
+		return {initialHexagram: a, movingHexagram: b, mdl: c};
 	});
 var _debois$elm_mdl$Main$Mdl = function (a) {
 	return {ctor: 'Mdl', _0: a};
@@ -16013,7 +16122,9 @@ var _debois$elm_mdl$Main$update = F2(
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{count: model.count + 1}),
+						{
+							initialHexagram: _elm_lang$core$List$head(_debois$elm_mdl$Hexagram$hexagramList)
+						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Reset':
@@ -16021,7 +16132,7 @@ var _debois$elm_mdl$Main$update = F2(
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{count: 0}),
+						{initialHexagram: _elm_lang$core$Maybe$Nothing}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
@@ -16088,35 +16199,63 @@ var _debois$elm_mdl$Main$view = function (model) {
 		_elm_lang$core$Basics_ops['++'],
 		defaultContent,
 		function () {
-			var _p1 = _elm_lang$core$List$head(_debois$elm_mdl$Hexagram$hexagramList);
+			var _p1 = model.initialHexagram;
 			if (_p1.ctor === 'Nothing') {
 				return {ctor: '[]'};
 			} else {
-				var _p2 = _p1._0;
 				return {
 					ctor: '::',
-					_0: A2(_debois$elm_mdl$Hexagram$renderReading, _p2, _p2),
+					_0: _debois$elm_mdl$Hexagram$toHtml(_p1._0),
 					_1: {ctor: '[]'}
 				};
 			}
 		}());
 	return A3(
 		_debois$elm_mdl$Material_Scheme$topWithScheme,
-		_debois$elm_mdl$Material_Color$Blue,
+		_debois$elm_mdl$Material_Color$LightBlue,
 		_debois$elm_mdl$Material_Color$Purple,
-		A2(
-			_elm_lang$html$Html$div,
+		A4(
+			_debois$elm_mdl$Material_Layout$render,
+			_debois$elm_mdl$Main$Mdl,
+			model.mdl,
 			{
 				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$style(
-					{
-						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'padding', _1: '2rem'},
-						_1: {ctor: '[]'}
-					}),
+				_0: _debois$elm_mdl$Material_Layout$waterfall(true),
 				_1: {ctor: '[]'}
 			},
-			content));
+			{
+				header: {
+					ctor: '::',
+					_0: A2(
+						_debois$elm_mdl$Material_Layout$row,
+						{ctor: '[]'},
+						{ctor: '[]'}),
+					_1: {ctor: '[]'}
+				},
+				drawer: {ctor: '[]'},
+				tabs: {
+					ctor: '_Tuple2',
+					_0: {ctor: '[]'},
+					_1: {ctor: '[]'}
+				},
+				main: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$style(
+								{
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'padding', _1: '2rem'},
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						},
+						content),
+					_1: {ctor: '[]'}
+				}
+			}));
 };
 var _debois$elm_mdl$Main$main = _elm_lang$html$Html$program(
 	{

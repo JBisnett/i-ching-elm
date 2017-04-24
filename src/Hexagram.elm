@@ -1,9 +1,10 @@
-module Hexagram exposing (Hexagram, hexagramList, renderReading)
+module Hexagram exposing (Hexagram, hexagramList, renderReading, toHtml)
 import Html exposing (..)
 import Material.Card as Card
 import Material.Grid exposing (grid, cell, size, offset,  Device(..))
 import Material.Color as Color
 import Material.Options as Options exposing (css)
+import Material.Elevation as Elevation
 type alias Hexagram = 
   { number: Int
   , name: String
@@ -25,12 +26,12 @@ hexagramList =
     , judgement = "The Creative works sublime success, Furthering through perseverance."
     , image = "The movement of heaven is full of power. Thus the superior man makes himself strong and untiring."
     , lines = 
-      [ "Nine at the beginning means: Hidden dragon. Do not act."
-      , "Nine in the second place means: Dragon appearing in the field. It furthers one to see the great man."
-      , "Nine in the third place means: All day long the superior man is creatively active. At nightfall his mind is still beset with cares. Danger. No blame."
-      , "Nine in the fourth place means: Wavering flight over the depths. No blame."
-      , "Nine in the fifth place means: Flying dragon in the heavens. It furthers one to see the great man."
-      , "Nine at the top means: Arrogant dragon will have cause to repent."
+      [ "Hidden dragon. Do not act."
+      , "Dragon appearing in the field. It furthers one to see the great man."
+      , "All day long the superior man is creatively active. At nightfall his mind is still beset with cares. Danger. No blame."
+      , "Wavering flight over the depths. No blame."
+      , "Flying dragon in the heavens. It furthers one to see the great man."
+      , "Arrogant dragon will have cause to repent."
       ]
     , repr = [True, True, True, True, True, True]
     , picture = ""
@@ -42,12 +43,12 @@ hexagramList =
     , judgement = "The Creative works sublime success, Furthering through perseverance."
     , image = "The movement of heaven is full of power. Thus the superior man makes himself strong and untiring."
     , lines = 
-      [ "Nine at the beginning means: Hidden dragon. Do not act."
-      , "Nine in the second place means: Dragon appearing in the field. It furthers one to see the great man."
-      , "Nine in the third place means: All day long the superior man is creatively active. At nightfall his mind is still beset with cares. Danger. No blame."
-      , "Nine in the fourth place means: Wavering flight over the depths. No blame."
-      , "Nine in the fifth place means: Flying dragon in the heavens. It furthers one to see the great man."
-      , "Nine at the top means: Arrogant dragon will have cause to repent."
+      [ "Hidden dragon. Do not act."
+      , "Dragon appearing in the field. It furthers one to see the great man."
+      , "All day long the superior man is creatively active. At nightfall his mind is still beset with cares. Danger. No blame."
+      , "Wavering flight over the depths. No blame."
+      , "Flying dragon in the heavens. It furthers one to see the great man."
+      , "Arrogant dragon will have cause to repent."
       ]
     , repr = [False, False, False, False, False, False]
     , picture = ""
@@ -56,7 +57,7 @@ hexagramList =
 
 toHtml: Hexagram -> Html msg
 toHtml hex = 
-  div [] 
+  Options.div [] <|
     [ h1 [] [text hex.character]
     , h2 [] [text hex.directName]
     , h3 [] [text hex.name]
@@ -65,15 +66,29 @@ toHtml hex =
     , h4 [] [text "Image"]
     , p [] [text hex.image]
     , h4 [] [text "Lines"]
+    , ol [] <| List.map (li [] << List.singleton << text) hex.lines
     ]
 
 renderReading: Hexagram -> Hexagram -> Html msg
 renderReading sgram mgram = 
+  let shared = [size All 5, Elevation.e2] in
   grid [Options.center]
-  [ cell [size All 5, Color.background <| Color.primary, Color.text Color.primaryContrast, Options.center]
-  [ toHtml sgram
-  ]
-  , cell [size All 5, Color.background <| Color.primaryDark, Color.text Color.primaryContrast, Options.center]
-  [ toHtml mgram 
-  ]
-  ]
+    [ cell 
+        (shared ++
+        [ Color.background <| Color.primary
+        , Color.text Color.primaryContrast
+        , Options.center
+        ]) 
+        [ h1 [] [text "Initial"]
+        , toHtml sgram
+        ]
+    , cell 
+        (shared ++
+        [ Color.background <| Color.primaryDark
+        , Color.text Color.primaryContrast
+        , Options.center
+        ])
+        [ h1 [] [text "Moving"]
+        , toHtml mgram 
+        ]
+    ]

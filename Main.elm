@@ -16,6 +16,7 @@ import Material.Scheme
 import Material.Color as Color
 import Material.Button as Button
 import Material.Options as Options exposing (css)
+import Material.Layout as Layout
 
 
 
@@ -23,19 +24,17 @@ import Material.Options as Options exposing (css)
 
 
 type alias Model =
-    { count : Int
-    , mdl :
-        Material.Model
-        -- Boilerplate: model store for any and all Mdl components you use.
+    { initialHexagram : Maybe Hexagram
+    , movingHexagram : Maybe Hexagram
+    , mdl : Material.Model
     }
 
 
 model : Model
 model =
-    { count = 0
-    , mdl =
-        Material.model
-        -- Boilerplate: Always use this initial Mdl model store.
+    { initialHexagram = Nothing
+    , movingHexagram = Nothing
+    , mdl = Material.model
     }
 
 
@@ -57,12 +56,12 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Increase ->
-            ( { model | count = model.count + 1 }
+            ( { model | initialHexagram = List.head hexagramList}
             , Cmd.none
             )
 
         Reset ->
-            ( { model | count = 0 }
+            ( { model | initialHexagram = Nothing }
             , Cmd.none
             )
 
@@ -86,14 +85,27 @@ view model =
         , Button.render Mdl [1] model.mdl [Options.onClick Increase] [text "Ask"]
         ]
   in
-  let content = defaultContent ++ case List.head hexagramList of
-    Nothing -> []
-    Just hex -> [Hexagram.renderReading hex hex]
+  let content = defaultContent ++ 
+      case model.initialHexagram of
+        Nothing -> []
+        Just hex -> [Hexagram.toHtml hex]
   in
-    div
-        [ style [ ( "padding", "2rem" ) ] ]
-        content
-        |> Material.Scheme.topWithScheme Color.Blue Color.Purple
+     Layout.render Mdl model.mdl
+     [ 
+       Layout.waterfall True
+     ]
+     { header = [
+       Layout.row [] []
+       ]
+     , drawer = [
+       ]
+     , tabs = ( []
+              , [])
+     , main = [ 
+       div [ style [ ( "padding", "2rem" ) ] ] content
+     ] 
+     }
+     |> Material.Scheme.topWithScheme Color.LightBlue Color.Purple
 
 
 main : Program Never Model Msg
