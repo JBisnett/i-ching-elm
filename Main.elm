@@ -13,6 +13,9 @@ import Material.Color as Color
 import Material.Button as Button
 import Material.Options as Options exposing (css)
 import Material.Layout as Layout
+import Bitwise exposing (shiftLeftBy)
+import Char exposing (toCode)
+import String exposing (toList)
 
 import HtmlParser as Parser
 
@@ -40,7 +43,7 @@ model =
 
 
 type Msg
-    = GetReading
+    = GetReading String
     | Reset
     | Mdl (Material.Msg Msg)
 
@@ -52,9 +55,10 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        GetReading ->
-          let get = lookup hexagramList
-              (coins, s1) =  Random.step (Random.list 6 <| Random.list 3 <| Random.bool) model.seed
+        GetReading str ->
+          let seed = Random.initialSeed <| hash str
+              get = lookup hexagramList
+              (coins, s1) =  Random.step (Random.list 6 <| Random.list 3 <| Random.bool) seed
               getVal l = 
                 case List.length <| List.filter ((==) True) l of
                   0 -> (False, True)
@@ -76,7 +80,13 @@ update msg model =
         -- Boilerplate: Mdl action handler.
         Mdl msg_ ->
             Material.update Mdl msg_ model
+hash : String -> Int
+hash str =
+  List.foldl updateHash 5381 <| toList str
 
+
+updateHash : Char -> Int -> Int
+updateHash c h = (shiftLeftBy h 5) + h + toCode c
 
 
 -- VIEW
@@ -96,15 +106,20 @@ lookup hexs bools =
 view : Model -> Html Msg
 view model =
   let defaultContent = 
-        [ Textfield.render Mdl [0] model.mdl [ Textfield.label "Enter a Question" , Textfield.floatingLabel , Textfield.textarea, css "width" "100%" ] []
-        , Button.render Mdl [1] model.mdl [Options.onClick GetReading] [text "Ask"]
+        [ Textfield.render Mdl [0] model.mdl 
+              [ Textfield.label "Enter a Question" 
+              , Textfield.floatingLabel 
+              , Textfield.textarea
+              , css "width" "100%"
+              , Options.onInput GetReading] []
+        , Button.render Mdl [1] model.mdl [Options.onClick Reset] [text "Reset"]
         ]
   in
   let content = defaultContent ++ 
       case model.initialHexagram of
         Nothing -> [Hexagram.renderAll hexagramList]
         Just hex -> case model.movingHexagram of
-          Nothing -> [Hexagram.view hex]
+          Nothing -> [Hexagram.renderReading hex hex]
           Just res -> [Hexagram.renderReading hex res]
   in
      Layout.render Mdl model.mdl
