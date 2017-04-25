@@ -21069,38 +21069,41 @@ var _jinjor$elm_html_parser$HtmlParser$parse = function (s) {
 		return {ctor: '[]'};
 	}
 };
-var _debois$elm_mdl$Hexagram$basicHtml = function (hex) {
+var _debois$elm_mdl$Hexagram$basicCard = function (hex) {
 	return {
 		ctor: '::',
 		_0: A2(
-			_elm_lang$html$Html$h1,
+			_debois$elm_mdl$Material_Card$title,
 			{ctor: '[]'},
 			{
 				ctor: '::',
-				_0: _elm_lang$html$Html$text(hex.character),
-				_1: {ctor: '[]'}
+				_0: A2(
+					_debois$elm_mdl$Material_Card$head,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(hex.character),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_debois$elm_mdl$Material_Card$subhead,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(hex.name),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
 			}),
 		_1: {
 			ctor: '::',
 			_0: A2(
-				_elm_lang$html$Html$h2,
+				_debois$elm_mdl$Material_Card$text,
 				{ctor: '[]'},
 				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text(hex.name),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$h3,
-					{ctor: '[]'},
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html$text(hex.directName),
-						_1: {ctor: '[]'}
-					}),
-				_1: {
 					ctor: '::',
 					_0: A2(
 						_elm_lang$html$Html$h4,
@@ -21120,108 +21123,63 @@ var _debois$elm_mdl$Hexagram$basicHtml = function (hex) {
 								_0: _elm_lang$html$Html$text(hex.judgement),
 								_1: {ctor: '[]'}
 							}),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$h4,
-								{ctor: '[]'},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text('Image'),
-									_1: {ctor: '[]'}
-								}),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_elm_lang$html$Html$p,
-									{ctor: '[]'},
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html$text(hex.image),
-										_1: {ctor: '[]'}
-									}),
-								_1: {ctor: '[]'}
-							}
-						}
+						_1: {ctor: '[]'}
 					}
-				}
-			}
-		}
-	};
-};
-var _debois$elm_mdl$Hexagram$toHtmlLines = F2(
-	function (hex, getLines) {
-		return A2(
-			_debois$elm_mdl$Material_Options$div,
-			{ctor: '[]'},
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				_debois$elm_mdl$Hexagram$basicHtml(hex),
-				getLines(hex.lines)));
-	});
-var _debois$elm_mdl$Hexagram$toHtml = function (hex) {
-	var lines = function (lns) {
-		return {
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$h4,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text('Lines'),
-					_1: {ctor: '[]'}
 				}),
 			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$ol,
+					_debois$elm_mdl$Material_Card$text,
 					{ctor: '[]'},
-					A2(
-						_elm_lang$core$List$map,
-						function (_p0) {
-							return A2(
-								_elm_lang$html$Html$li,
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$h4,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('Image'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$p,
 								{ctor: '[]'},
-								_elm_lang$core$List$singleton(
-									_elm_lang$html$Html$text(_p0)));
-						},
-						lns)),
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(hex.image),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}),
 				_1: {ctor: '[]'}
 			}
-		};
+		}
 	};
-	return A2(_debois$elm_mdl$Hexagram$toHtmlLines, hex, lines);
 };
 var _debois$elm_mdl$Hexagram$renderAll = function (hexs) {
 	var cf = function (hex) {
 		return A2(
-			_debois$elm_mdl$Material_Grid$cell,
+			_debois$elm_mdl$Material_Card$view,
 			{
 				ctor: '::',
-				_0: A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 4),
+				_0: _debois$elm_mdl$Material_Elevation$e8,
 				_1: {
 					ctor: '::',
-					_0: _debois$elm_mdl$Material_Elevation$e2,
+					_0: _debois$elm_mdl$Material_Color$background(_debois$elm_mdl$Material_Color$primary),
 					_1: {
 						ctor: '::',
-						_0: _debois$elm_mdl$Material_Color$background(_debois$elm_mdl$Material_Color$primary),
-						_1: {
-							ctor: '::',
-							_0: _debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$primaryContrast),
-							_1: {
-								ctor: '::',
-								_0: _debois$elm_mdl$Material_Options$center,
-								_1: {ctor: '[]'}
-							}
-						}
+						_0: _debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$primaryContrast),
+						_1: {ctor: '[]'}
 					}
 				}
 			},
-			_elm_lang$core$List$singleton(
-				_debois$elm_mdl$Hexagram$toHtml(hex)));
+			_debois$elm_mdl$Hexagram$basicCard(hex));
 	};
 	return A2(
-		_debois$elm_mdl$Material_Grid$grid,
+		_debois$elm_mdl$Material_Options$div,
 		{
 			ctor: '::',
 			_0: _debois$elm_mdl$Material_Options$center,
@@ -21237,7 +21195,7 @@ var _debois$elm_mdl$Hexagram$renderReading = F2(
 				return {
 					ctor: '::',
 					_0: A2(
-						_elm_lang$html$Html$h4,
+						_debois$elm_mdl$Material_Card$text,
 						{ctor: '[]'},
 						{
 							ctor: '::',
@@ -21247,138 +21205,78 @@ var _debois$elm_mdl$Hexagram$renderReading = F2(
 					_1: {
 						ctor: '::',
 						_0: A2(
-							_elm_lang$html$Html$ol,
+							_debois$elm_mdl$Material_Card$text,
 							{ctor: '[]'},
-							A3(
-								_elm_lang$core$List$map2,
-								F2(
-									function (line, change) {
-										return A2(
-											_elm_lang$html$Html$li,
-											{ctor: '[]'},
-											{
-												ctor: '::',
-												_0: change ? op(
-													_elm_lang$html$Html$text(line)) : _elm_lang$html$Html$text(line),
-												_1: {ctor: '[]'}
-											});
-									}),
-								lns,
-								barXor)),
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$ol,
+									{ctor: '[]'},
+									A3(
+										_elm_lang$core$List$map2,
+										F2(
+											function (line, change) {
+												return A2(
+													_elm_lang$html$Html$li,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: change ? op(
+															_elm_lang$html$Html$text(line)) : _elm_lang$html$Html$text(line),
+														_1: {ctor: '[]'}
+													});
+											}),
+										lns,
+										barXor)),
+								_1: {ctor: '[]'}
+							}),
 						_1: {ctor: '[]'}
 					}
 				};
 			});
-		var shared = {
-			ctor: '::',
-			_0: A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 5),
-			_1: {
-				ctor: '::',
-				_0: _debois$elm_mdl$Material_Elevation$e2,
-				_1: {ctor: '[]'}
-			}
-		};
 		return A2(
-			_debois$elm_mdl$Material_Grid$grid,
-			{
-				ctor: '::',
-				_0: _debois$elm_mdl$Material_Options$center,
-				_1: {ctor: '[]'}
-			},
+			_debois$elm_mdl$Material_Options$div,
+			{ctor: '[]'},
 			{
 				ctor: '::',
 				_0: A2(
-					_debois$elm_mdl$Material_Grid$cell,
+					_debois$elm_mdl$Material_Card$view,
+					{ctor: '[]'},
 					A2(
 						_elm_lang$core$Basics_ops['++'],
-						shared,
-						{
-							ctor: '::',
-							_0: _debois$elm_mdl$Material_Color$background(_debois$elm_mdl$Material_Color$primary),
-							_1: {
-								ctor: '::',
-								_0: _debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$primaryContrast),
-								_1: {
-									ctor: '::',
-									_0: _debois$elm_mdl$Material_Options$center,
-									_1: {ctor: '[]'}
-								}
-							}
-						}),
-					{
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$h1,
-							{ctor: '[]'},
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html$text('Initial'),
-								_1: {ctor: '[]'}
-							}),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_debois$elm_mdl$Hexagram$toHtmlLines,
-								sgram,
-								lines(
-									function (_p1) {
-										return A2(
-											_elm_lang$html$Html$del,
-											{ctor: '[]'},
-											_elm_lang$core$List$singleton(_p1));
-									})),
-							_1: {ctor: '[]'}
-						}
-					}),
+						_debois$elm_mdl$Hexagram$basicCard(sgram),
+						lines(
+							function (_p0) {
+								return A2(
+									_elm_lang$html$Html$del,
+									{ctor: '[]'},
+									_elm_lang$core$List$singleton(_p0));
+							})(sgram.lines))),
 				_1: {
 					ctor: '::',
 					_0: A2(
-						_debois$elm_mdl$Material_Grid$cell,
+						_debois$elm_mdl$Material_Card$view,
+						{ctor: '[]'},
 						A2(
 							_elm_lang$core$Basics_ops['++'],
-							shared,
-							{
-								ctor: '::',
-								_0: _debois$elm_mdl$Material_Color$background(_debois$elm_mdl$Material_Color$primaryDark),
-								_1: {
-									ctor: '::',
-									_0: _debois$elm_mdl$Material_Color$text(_debois$elm_mdl$Material_Color$primaryContrast),
-									_1: {
-										ctor: '::',
-										_0: _debois$elm_mdl$Material_Options$center,
-										_1: {ctor: '[]'}
-									}
-								}
-							}),
-						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$h1,
-								{ctor: '[]'},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text('Moving'),
-									_1: {ctor: '[]'}
-								}),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_debois$elm_mdl$Hexagram$toHtmlLines,
-									mgram,
-									lines(
-										function (_p2) {
-											return A2(
-												_elm_lang$html$Html$em,
-												{ctor: '[]'},
-												_elm_lang$core$List$singleton(_p2));
-										})),
-								_1: {ctor: '[]'}
-							}
-						}),
+							_debois$elm_mdl$Hexagram$basicCard(mgram),
+							lines(
+								function (_p1) {
+									return A2(
+										_elm_lang$html$Html$del,
+										{ctor: '[]'},
+										_elm_lang$core$List$singleton(_p1));
+								})(sgram.lines))),
 					_1: {ctor: '[]'}
 				}
 			});
 	});
+var _debois$elm_mdl$Hexagram$view = function (hex) {
+	return A2(
+		_debois$elm_mdl$Material_Card$view,
+		{ctor: '[]'},
+		_debois$elm_mdl$Hexagram$basicCard(hex));
+};
 var _debois$elm_mdl$Hexagram$Hexagram = F9(
 	function (a, b, c, d, e, f, g, h, i) {
 		return {number: a, name: b, descriptor: c, directName: d, character: e, image: f, judgement: g, lines: h, bars: i};
@@ -31024,18 +30922,41 @@ var _debois$elm_mdl$Main$update = F2(
 		var _p2 = msg;
 		switch (_p2.ctor) {
 			case 'GetReading':
-				var _p3 = A2(
-					_elm_lang$core$Random$step,
-					A2(_elm_lang$core$Random$list, 6, _elm_lang$core$Random$bool),
-					model.seed);
-				var initialBools = _p3._0;
-				var s1 = _p3._1;
+				var getVal = function (l) {
+					var _p3 = _elm_lang$core$List$length(
+						A2(
+							_elm_lang$core$List$filter,
+							F2(
+								function (x, y) {
+									return _elm_lang$core$Native_Utils.eq(x, y);
+								})(true),
+							l));
+					switch (_p3) {
+						case 0:
+							return {ctor: '_Tuple2', _0: false, _1: true};
+						case 1:
+							return {ctor: '_Tuple2', _0: false, _1: false};
+						case 2:
+							return {ctor: '_Tuple2', _0: true, _1: true};
+						case 3:
+							return {ctor: '_Tuple2', _0: true, _1: false};
+						default:
+							return {ctor: '_Tuple2', _0: true, _1: true};
+					}
+				};
 				var _p4 = A2(
 					_elm_lang$core$Random$step,
-					A2(_elm_lang$core$Random$list, 6, _elm_lang$core$Random$bool),
-					s1);
-				var movingBools = _p4._0;
-				var s2 = _p4._1;
+					A2(
+						_elm_lang$core$Random$list,
+						6,
+						A2(_elm_lang$core$Random$list, 3, _elm_lang$core$Random$bool)),
+					model.seed);
+				var coins = _p4._0;
+				var s1 = _p4._1;
+				var _p5 = _elm_lang$core$List$unzip(
+					A2(_elm_lang$core$List$map, getVal, coins));
+				var initialBools = _p5._0;
+				var movingBools = _p5._1;
 				var get = _debois$elm_mdl$Main$lookup(_debois$elm_mdl$HexagramList$hexagramList);
 				return {
 					ctor: '_Tuple2',
@@ -31124,26 +31045,26 @@ var _debois$elm_mdl$Main$view = function (model) {
 		_elm_lang$core$Basics_ops['++'],
 		defaultContent,
 		function () {
-			var _p5 = model.initialHexagram;
-			if (_p5.ctor === 'Nothing') {
+			var _p6 = model.initialHexagram;
+			if (_p6.ctor === 'Nothing') {
 				return {
 					ctor: '::',
 					_0: _debois$elm_mdl$Hexagram$renderAll(_debois$elm_mdl$HexagramList$hexagramList),
 					_1: {ctor: '[]'}
 				};
 			} else {
-				var _p7 = _p5._0;
-				var _p6 = model.movingHexagram;
-				if (_p6.ctor === 'Nothing') {
+				var _p8 = _p6._0;
+				var _p7 = model.movingHexagram;
+				if (_p7.ctor === 'Nothing') {
 					return {
 						ctor: '::',
-						_0: _debois$elm_mdl$Hexagram$toHtml(_p7),
+						_0: _debois$elm_mdl$Hexagram$view(_p8),
 						_1: {ctor: '[]'}
 					};
 				} else {
 					return {
 						ctor: '::',
-						_0: A2(_debois$elm_mdl$Hexagram$renderReading, _p7, _p6._0),
+						_0: A2(_debois$elm_mdl$Hexagram$renderReading, _p8, _p7._0),
 						_1: {ctor: '[]'}
 					};
 				}

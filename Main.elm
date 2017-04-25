@@ -54,8 +54,15 @@ update msg model =
     case msg of
         GetReading ->
           let get = lookup hexagramList
-              (initialBools, s1) =  Random.step (Random.list 6 <| Random.bool) model.seed
-              (movingBools, s2) = Random.step (Random.list 6 <| Random.bool) s1
+              (coins, s1) =  Random.step (Random.list 6 <| Random.list 3 <| Random.bool) model.seed
+              getVal l = 
+                case List.length <| List.filter ((==) True) l of
+                  0 -> (False, True)
+                  1 -> (False, False)
+                  2 -> (True, True)
+                  3 -> (True, False)
+                  _ -> (True, True) -- shouldn't happen
+              (initialBools, movingBools) = List.unzip <| List.map getVal coins 
           in 
             ( { model | initialHexagram = get <| initialBools, movingHexagram = get movingBools, seed = s1}
             , Cmd.none
@@ -97,7 +104,7 @@ view model =
       case model.initialHexagram of
         Nothing -> [Hexagram.renderAll hexagramList]
         Just hex -> case model.movingHexagram of
-          Nothing -> [Hexagram.toHtml hex]
+          Nothing -> [Hexagram.view hex]
           Just res -> [Hexagram.renderReading hex res]
   in
      Layout.render Mdl model.mdl
