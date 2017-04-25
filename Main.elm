@@ -115,7 +115,7 @@ view model =
        div [ style [ ( "padding", "2rem" ) ] ] content
      ] 
      }
-     |> Material.Scheme.topWithScheme Color.LightBlue Color.Purple
+     |> Material.Scheme.topWithScheme Color.Blue Color.Purple
 
 
 main : Program Never Model Msg
